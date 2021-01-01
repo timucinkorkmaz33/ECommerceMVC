@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "OzellikTipPartial";
+  
+}
+@model IEnumerable<ETicaret.WebUI.Models.OzellikTip>
+<script src="~/Content/Admin/Flatlab Main Files/admin/template_content/js/jquery-1.8.3.min.js"></script>
+
+<script>
+    $(document).ready(function myfunction() {
+        $('#tipler').change(function myfunction() {
+
+            var id = $(this).val();
+
+            $.ajax({
+                type: "GET",
+                url: '/Admin/OzellikDegerPartial',
+                data: { OId: id },
+                success: function myfunction(veri) {
+                    $('#deger').html(' ');
+                    $('#deger').append(veri);
+
+                },
+                error: function myfunction() {
+
+                }
+            })
+        })
+    })
+</script>
+
+
+<div class="form-group">
+    <label class="col-lg-2 control-label">Özellik Tip</label>
+    <div class="col-lg-10">
+        <select id="tipler" class="form-control col-lg-10" style="color:black" name="OzellikTipId" >
+            @foreach (var k in Model)
+            {
+                <option value="@k.Id">@k.Adi</option>
+            }
+
+
+        </select>
+    </div>
+</div>

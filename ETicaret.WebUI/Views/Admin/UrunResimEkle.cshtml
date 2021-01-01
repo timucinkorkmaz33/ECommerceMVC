@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "UrunResimEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<br /><br /><br /><br /><br /><br />
+<div class="row">
+    <div class="col-lg-12">
+
+
+        <section class="panel">
+            <header class="panel-heading">
+               Ürün Resim Ekle
+            </header>
+            <form action="/admin/UrunResimEkle" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Resim Ekle</label>
+                    <div class="controls col-md-10">
+                        <div class="fileupload fileupload-new" data-provides="resim">
+                            <span class="btn btn-white btn-file">
+                                <span class="fileupload-new"><i class="icon-paper-clip"></i>Resim Seç</span>
+
+                                <input type="file" name="resim" value="" multiple="multiple" />
+                            </span>
+
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="uId" value="@Model" />
+                <br /><br /><br /><br />
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-1">
+                        <button class="btn btn-success icon-save" type="submit"><strong>  Kaydet</strong></button>
+
+                    </div>
+                    <div class=" col-lg-2">
+                        <button class="btn btn-primary icon-backward"><a href="/Admin/Kategoriler">  Geri</a></button>
+
+                    </div>
+                </div>
+
+                <br /><br />
+            </form>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "OzellikDegerPartial";
+  
+}
+
+
+
+@model IEnumerable<ETicaret.WebUI.Models.OzellikDeger>
+
+<div class="form-group">
+    <label class="col-lg-2 control-label">Özellik Değer</label>
+    <div class="col-lg-10">
+        <select class="form-control col-lg-10" style="color:black" name="OzellikDegerId">
+            @foreach (var k in Model)
+            {
+                <option value="@k.Id">@k.Adi</option>
+            }
+
+
+        </select>
+    </div>
+</div>
+

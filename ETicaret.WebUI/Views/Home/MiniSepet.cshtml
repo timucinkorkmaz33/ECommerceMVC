@@ -1,0 +1,75 @@
+﻿
+@model ETicaret.WebUI.App_Classes.Sepet
+
+
+<script>
+    $(document).ready(function myfunction() {
+        $(".urunsil").click(function myfunction() {
+            var uid = $(this).attr("name");
+            $.ajax({
+                type: "GET",
+                url: "/Home/SepetUrunAdetDusur",
+                data: { id: uid },
+                success: function myfunction() {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Home/MiniSepet",
+                        success: function myfunction(veri) {
+                            $(".cart-all").html('');
+                            $(".cart-all").html(veri);
+                        }
+                    })
+                },
+                error: function myfunction() {
+                    alert("Ürün Silme İşleminde Hata Oluştu");
+                }
+
+            });
+
+        });
+
+    });
+</script>
+
+
+
+<div class="cart-all">
+    <i class="icon-19" title="19"></i>
+    @{ if (Model != null)
+        {
+    <span>@Model.ToplamTutar.ToString("C2")</span> }
+        else
+        {
+          <span> 0 ₺ </span> 
+        } 
+       }
+    <div class="inside-cart">
+        <p>@{
+            if(Model!=null)
+            {
+                <span>Sepette Toplam @Model.Urunler.Sum(x=>x.Adet) Adet Ürün Bulunmaktadır.</span>
+            }
+            else
+            {
+                <span>Sepette Toplam 0 Adet Ürün Bulunmaktadır.</span>
+            }
+        }</p>
+        <ul>
+            @if (Model != null)
+            {
+                foreach (var item in Model.Urunler)
+                {
+                    <li>
+                        <div class="inside-cart-image"><img src="@item.Urun.Resim.FirstOrDefault(x=>x.Varsayilan==true).OrtaYol" alt="@item.Urun.Adi" /></div>
+                        <a class="urunsil" name="@item.Urun.Id">x</a>
+
+                        <a href="/Home/UrunDetay/@item.Urun.Id">@item.Urun.Adi</a>
+                        <p>Tutar : @item.Tutar.ToString("C2")</p>
+                        <p>Adet : @item.Adet</p>
+                    </li>
+                }
+            }
+            
+        </ul>
+    </div>
+</div>

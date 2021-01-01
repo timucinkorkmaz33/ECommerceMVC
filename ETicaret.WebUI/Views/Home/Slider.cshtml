@@ -1,0 +1,25 @@
+﻿
+@model IEnumerable<ETicaret.WebUI.Models.Resim>
+
+<div class="the-slider slider" data-tesla-plugin="slider" data-tesla-item=".slide" data-tesla-next=".slide-right" data-tesla-prev=".slide-left" data-tesla-container=".slide-wrapper">
+    <div class="slide-arrows">
+        <div class="slide-left"></div>
+        <div class="slide-right"></div>
+    </div>
+    <ul class="slide-wrapper">
+        @foreach (var item in Model)
+        {
+            <li class="slide"><img src="@item.BuyukYol" alt="slider image"></li>
+        }
+
+        
+    </ul>
+    <ul class="the-bullets-dots" data-tesla-plugin="bullets">
+        @foreach (var item in Model)
+        {
+        <li><span></span></li>
+        }
+
+        
+    </ul>
+</div>  
